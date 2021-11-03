@@ -1,19 +1,19 @@
-SSH key using ssh-keygen -t rsa -b 4096 -C "your_email@example.com".
-Copy the output of cat id_rsa.pub
-Paste the above copied outpur into your Github profile -> Settings -> SSH and GPG Keys -> Add new SSH key
+Docker Container Storage - Mounts | Summary and Commands
+Docker Container Storage - Mounts | Command Summary
 
+Excellent job on completing this section on storage and mounts with Docker containers. Knowing how to persist data across multiple containers and back to the host machine is crucial so that we can access the important information generated within containers.
 
-Docker Images in Depth | Summary and Commands
-Docker Images in Depth | Summary and Commands
+In this section, we covered three approaches to docker container storage.
 
-Excellent job on completing this section on taking a deeper dive into docker images. In this section, we learned plenty of important lessons about images.
+The volume mount persists data across containers by storing data in a docker-managed directory on the host machine. This is valuable when you need to hold on to container-created data, even if the container is removed.
 
-For one, images are highly important since they provide the blueprints for docker containers. They are created by editing a customized document called the Dockerfile. Examples of dockerfiles, as well as hundreds of useful images are all stored on dockerhub - ready for us to explore.
+The bind mount takes a directory from the host machine and maps them to container directories. This helps when you need to constantly update a directory on the Docker host machine that contains valuable files for containers.
 
-Next, we’ll explore more advanced features of containers. Soon, we’ll even allow multiple containers to interact in order to have really complex Docker application setups.
+The tmpfs mount is unique since data in this kind of directory only lasts during the lifetime of the running container using it. The tmpfs mount is beneficial when you need to use secret data like passwords.
 
-In the meantime, here’s a collection of the Docker commands we have used thus far:
+Next, we’ll learn how to use multiple containers simultaneously. We’ll discover how to multiple containers can and should interact. By having more than one container to work with, we’ll dive into more advanced features and concepts. Not to mention, we’ll build more complex and capable applications with Docker!
 
+In the meantime, here’s a summary of the Docker commands we have mainly used so far:
 
 Docker Containers
 
@@ -135,3 +135,47 @@ Usage (exec format, recommended): CMD [“default command”, “arguments”]
 
 Example: CMD [“node”, “server.js”]
 
+Cross-Container Storage
+
+Volumes
+
+Create a volume
+
+Usage: docker volume create <volume name>
+
+Example: docker volume create shared-vol
+
+Inspect a volume
+
+Usage: docker volume inspect <volume name>
+
+Example: docker volume inspect shared-vol
+
+Mount a container with a volume using docker run
+
+Usage: --mount source=<volume name>, target=<container dir>
+
+Example:
+
+docker run -it --name=foo --mount source=shared-vol,target=/src/shared ubuntu bash
+
+Bind Mounts
+
+Mount a container with a bind mount using docker run
+
+Usage: --mount type=bind source=<host dir>, target=<container dir>
+
+Example:
+
+docker run -it --name=foo --mount type=bind source=/Users/foo/bindmountdir, \
+
+target=/src/mountdir ubuntu bash
+
+Tmpfs mounts
+
+Mount a container with a tmpfs mount using docker run
+
+Usage: --mount type=tmpfs, destination=<container dir>
+
+Example:
+docker run -it --name=baz --mount type=tmpfs, destination=/tmpdir ubuntu bash
