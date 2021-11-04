@@ -5,4 +5,10 @@ services:
         build: './players'
         ports:
             - 3000:80
+            
+    site:
+        build: './site'
+        ports: 
+            - 4000:80
+        depends_on: playerss
         
