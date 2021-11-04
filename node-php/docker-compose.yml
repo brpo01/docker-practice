@@ -1,6 +1,6 @@
-VERSION : '3'
+version : '3'
 
-SERVICES:
-    PLAYERS:
-        BUILD: './players'
+services:
+    players:
+        build: './players'
         
