@@ -1,0 +1,6 @@
+VERSION : '3'
+
+SERVICES:
+    PLAYERS:
+        BUILD: './players'
+        
