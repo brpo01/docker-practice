@@ -3,4 +3,4 @@ CREATE TABLE apparel(
 );
 
 INSERT INTO apparel(name)
-VALUES ('Aquarius', 'Pisces', 'Virgo');
+VALUES ('Aquarius'), ('Pisces'), ('Virgo');
