@@ -1,19 +1,14 @@
-Docker Container Storage - Mounts | Summary and Commands
-Docker Container Storage - Mounts | Command Summary
+Multicontainer Docker: Networking and Compose | Summary and Commands
 
-Excellent job on completing this section on storage and mounts with Docker containers. Knowing how to persist data across multiple containers and back to the host machine is crucial so that we can access the important information generated within containers.
+Excellent work on completing this section on multicontainer docker, with networking and Compose. During this section, we covered a lot of very important ground with Docker.
 
-In this section, we covered three approaches to docker container storage.
+With networking, we saw how more than one container could communicate in Docker. We have default networks to use in container, such as the bridge network which allows us to immediately connect running containers. We can also set up private networks for a collection of containers. This private network even has its own embedded DNS server so that containers can connect by container name.
 
-The volume mount persists data across containers by storing data in a docker-managed directory on the host machine. This is valuable when you need to hold on to container-created data, even if the container is removed.
+We also worked with Docker Compose for the first time. Compose allows us to write the configuration for more than one container all at once. The group of containers created by compose makes up an application. Compose has a lot of features and benefits: it sets up a private network, and allows us to see the configuration for more than one of an application’s containers all at once.
 
-The bind mount takes a directory from the host machine and maps them to container directories. This helps when you need to constantly update a directory on the Docker host machine that contains valuable files for containers.
+Moving on, we’ll dive in more deeply into compose, and see more advanced ways we can configure multicontainer applications in Docker.
 
-The tmpfs mount is unique since data in this kind of directory only lasts during the lifetime of the running container using it. The tmpfs mount is beneficial when you need to use secret data like passwords.
-
-Next, we’ll learn how to use multiple containers simultaneously. We’ll discover how to multiple containers can and should interact. By having more than one container to work with, we’ll dive into more advanced features and concepts. Not to mention, we’ll build more complex and capable applications with Docker!
-
-In the meantime, here’s a summary of the Docker commands we have mainly used so far:
+In the meantime, here’s a summary of the critical Docker commands we’ve used thus far:
 
 Docker Containers
 
@@ -179,3 +174,51 @@ Usage: --mount type=tmpfs, destination=<container dir>
 
 Example:
 docker run -it --name=baz --mount type=tmpfs, destination=/tmpdir ubuntu bash
+
+Docker Networking
+
+List docker networks
+
+docker network ls
+
+Inspect a docker network
+
+Usage: docker network inspect <network name>
+
+Example: docker network inspect bridge
+
+Create a docker network
+
+Usage: docker network create <network name>
+
+Example: docker network create privatenw
+
+Run a container with a custom docker network:
+
+Usage: --network=<network name>
+
+Example: docker run --network=privatenw -it --name=goo busybox
+
+Docker Compose
+
+Start a compose application
+
+At the root (where docker-compose.yml is located): docker-compose up
+
+Start a compose application and rebuild images:
+
+Docker-compose up --build
+
+docker-compose.yml
+
+Version
+
+Current version is 3. So at the top of the file, specify: version: ‘3’
+
+Services with builds
+
+Have a services key in the file. List out services one indent at a time.
+
+Dependencies
+
+Use the depends_on key and specify dependencies with a list. Each container dependency is marked by a dash, such as: -backend
