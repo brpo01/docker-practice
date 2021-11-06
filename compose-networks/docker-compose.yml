@@ -4,13 +4,13 @@ services:
     db:
         build: './db'
         environment:
-            POSTGRES_PASSWORD: password
+            POSTGRES_HOST_AUTH_METHOD: trust
     apparel:
         build: './apparel'
         volumes:
             - ./apparel:/app
         ports:
-            - 4000:80
+            - 5001:80
         depends_on: 
             - db
             
