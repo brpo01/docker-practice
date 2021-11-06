@@ -1,14 +1,14 @@
-Multicontainer Docker: Networking and Compose | Summary and Commands
+Docker Compose in Depth | Volumes and Networks | Summary and Commands
 
-Excellent work on completing this section on multicontainer docker, with networking and Compose. During this section, we covered a lot of very important ground with Docker.
+Excellent work on completing this section on even deeper dive into Docker compose.
 
-With networking, we saw how more than one container could communicate in Docker. We have default networks to use in container, such as the bridge network which allows us to immediately connect running containers. We can also set up private networks for a collection of containers. This private network even has its own embedded DNS server so that containers can connect by container name.
+In this section, we covered Docker-compose volumes. With volumes, we have the ability to connect a directory on the Docker host to one in the docker container. This makes sure that as we update files in the Docker host, they are simultaneously updated in our container.
 
-We also worked with Docker Compose for the first time. Compose allows us to write the configuration for more than one container all at once. The group of containers created by compose makes up an application. Compose has a lot of features and benefits: it sets up a private network, and allows us to see the configuration for more than one of an application’s containers all at once.
+We also explored networking in our most ambitious compose application yet - using postgresql, node+express, flask, and php to create four services. The custom networks allow us to specifically connect services to each other, to create more privileged and secure access between containers in the applications.
 
-Moving on, we’ll dive in more deeply into compose, and see more advanced ways we can configure multicontainer applications in Docker.
+Next, we’ll explore Docker swarm to explore Docker on more than one host. With more than one docker host, Docker will become even more powerful and exciting!
 
-In the meantime, here’s a summary of the critical Docker commands we’ve used thus far:
+In the meantime, here’s the updated summary of commands that we’ve used so far:
 
 Docker Containers
 
@@ -222,3 +222,17 @@ Have a services key in the file. List out services one indent at a time.
 Dependencies
 
 Use the depends_on key and specify dependencies with a list. Each container dependency is marked by a dash, such as: -backend
+
+Volumes
+
+Have a volume key per service.
+
+Connect a Docker host directory to a container directory, by joining them with a colon.
+
+Example: ./dockerhostdir:/containerdir
+
+Networks
+
+Declare networks at the bottom of the file.
+
+Specify each service’s network(s) with the networks option for each service.
