@@ -29,4 +29,9 @@ services:
             - 7000:80
         depends_on:
             - prices
+networks:
+  core:
+    driver: bridge
+  site:
+    driver: bridge
             
