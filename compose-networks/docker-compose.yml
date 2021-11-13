@@ -38,7 +38,7 @@ services:
             - prices
         networks:
             - site
-networks:
+networks: #attaching privilege access for each service
   core:
     driver: bridge
   site:
