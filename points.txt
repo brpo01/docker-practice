@@ -236,3 +236,7 @@ Networks
 Declare networks at the bottom of the file.
 
 Specify each service’s network(s) with the networks option for each service.
+
+
+COMMAND FOR CREATING AN SSH KEY FOR YOUR EC2 INSTANCE TO CONNECT TO GIT VIA SSH
+$ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
